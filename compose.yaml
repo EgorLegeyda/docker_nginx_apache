@@ -1,0 +1,76 @@
+# networks:
+#   network:
+#     name: network
+
+
+# services:
+#   nginx:
+#     container_name: nginxContainer
+#     image: nginx:1.19.8
+#     ports:
+#       - 80:80
+#       - 443:443
+#     volumes:
+#       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+#       - ./nginx/html:/var/www/html
+#       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#       - ./nginx/ssl/nginx-selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt
+#       - ./nginx/ssl/private/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key
+#     networks: 
+#       - network
+  
+#   php:
+#     container_name: phpContainer
+#     image: php:8.0-apache
+#     ports:
+#       - 81:80
+#     volumes:
+#       - ./apache/html:/var/www/html
+#     networks:
+#       - network
+
+
+#   certbot:
+#     image: certbot/certbot
+#     depends_on:
+#       - nginx
+#     container_name: certbot
+#     volumes:
+#       - etc-letsencrypt:/etc/letsencrypt
+#       - www-html:/var/www/html
+#     command: certonly --webroot --webroot-path=/var/www/html --email egorlegejda@gmail.com --agree-tos --no-eff-email -d test.world-itech.ru
+ 
+# volumes:
+#   www-html:
+#   dbfile:
+#   etc-letsencrypt:
+
+
+
+
+networks:
+  network:
+    name: network
+
+services:
+  nginx:
+    container_name: nginx-container
+    ports:
+      - 80:80
+    # - 443:443
+    # volumes:
+    #   # - ./nginx/html:/var/www/html:ro
+    #   - ./nginx/ssl/nginx-selfsigned.crt:/app/ssl/certs/nginx-selfsigned.crt:ro
+    #   - ./nginx/ssl/private/nginx-selfsigned.key:/app/ssl/private/nginx-selfsigned.key:ro
+    networks: 
+      - network
+    build: ./nginx/
+  
+  php:
+    container_name: php-container
+    build: ./apache/
+    ports:
+      - 8080:8080
+    networks:
+      - network
+      
