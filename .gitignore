@@ -1,4 +1,5 @@
 nginx/archive/
 nginx/letsencrypt/
 nginx/snippets/
-nginx/ssl
+nginx/ssl/
+ssl-dhparams.pem
