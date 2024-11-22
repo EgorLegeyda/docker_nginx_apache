@@ -35,7 +35,7 @@ RUN apk update && \
     # chown -R apache2:apache2 /var/www/ && \
     # chown -R apache2:apache2 /var/log/apache2 && \
     # chown -R apache2:apache2 /run/apache2 && \
-    sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/httpd.conf
+    sed -i 's/Listen 80/Listen 8081/g' /etc/apache2/httpd.conf
 
 # USER apache2
 
