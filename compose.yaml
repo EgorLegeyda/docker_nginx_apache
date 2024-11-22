@@ -45,9 +45,6 @@
 #   dbfile:
 #   etc-letsencrypt:
 
-
-
-
 networks:
   network:
     name: network
