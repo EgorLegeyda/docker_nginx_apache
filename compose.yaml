@@ -62,10 +62,12 @@ services:
     networks: 
       - network
     build: ./nginx/
+    image: egorlegeyda/task12:nginx
   
   php:
     container_name: php-container
     build: ./apache/
+    image: egorlegeyda/task12:php
     ports:
       - 8080:8080
     networks:
