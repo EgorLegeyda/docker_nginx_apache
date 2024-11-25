@@ -17,6 +17,7 @@ pipeline {
                     sh "pwd"
                     docker.build(IMAGE_NAME_PHP, './apache')
                     docker.build(IMAGE_NAME_NGINX, './nginx')
+                    sh "docker images"
                 }
             }
         }
