@@ -32,5 +32,24 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to Remote Server') {
+            steps {
+                script {
+                    sshagent(['ssh-credentials-id']) { // ID ваших SSH учетных данных
+                        // sh """
+                        // ssh ${REMOTE_SERVER} 'docker pull ${IMAGE_NAME_NGINX} &&
+                        // docker pull ${IMAGE_NAME_PHP}
+                        // docker stop my_container || true &&
+                        // docker rm my_container || true &&
+                        // docker run -d --name my_container ${IMAGE_NAME}'
+                        // """
+                        sh """
+                        ssh ${REMOTE_SERVER} 'docker-compose up'
+                        """
+                    }
+                }
+            }
+        }
+
     }
 }
