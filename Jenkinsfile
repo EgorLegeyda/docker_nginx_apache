@@ -40,7 +40,7 @@ pipeline {
                             ssh ubuntu@54.209.192.114 '  
                                 if [ \"\$(docker ps -aq)\" ]; then
                                     docker rm -f \$(docker ps -aq)
-                                fiss
+                                fi
 
                                 if [ \"\$(docker images -q)\" ]; then
                                     docker rmi \$(docker images -q)
