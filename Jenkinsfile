@@ -35,48 +35,24 @@ pipeline {
         stage('Deploy to Remote Server') {
             steps {
                 script {
-                    // sshagent(['second-key.pem']) {
-                    //     // sh """
-                    //     // ssh ${REMOTE_SERVER}
-                    //     //     'if [ \"\$(docker ps -aq)\" ]; then
-                    //     //         docker rm -f \$(docker ps -aq)
-                    //     //     fi
-
-                    //     //     if [ \"\$(docker images -q)\" ]; then
-                    //     //         docker rmi \$(docker images -q)
-                    //     //     fi
-
-                    //     //     docker pull egorlegeyda/task12:nginx &&
-                    //     //     docker pull egorlegeyda/task12:php &&
-
-                    //     //     docker run --network mynetwork --name php-container -d -p 8081:8081 egorlegeyda/task12:php &&
-                    //     //     docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx'
-                    //     // """
-                    // }
                     sshagent(['second-key.pem']) {
-    sh """
-    ssh ${REMOTE_SERVER} '
-        set -e  # Прекращает выполнение при ошибках
-        echo "Removing all containers..."
-        if [ "\$(docker ps -aq)" ]; then
-            docker rm -f \$(docker ps -aq) || echo "No containers to remove"
-        fi
+                        sh """
+                            ssh ubuntu@54.209.192.114
+                            'if [ \"\$(docker ps -aq)\" ]; then
+                                docker rm -f \$(docker ps -aq)
+                            fi
 
-        echo "Removing all images..."
-        if [ "\$(docker images -q)" ]; then
-            docker rmi \$(docker images -q) || echo "No images to remove"
-        fi
+                            if [ \"\$(docker images -q)\" ]; then
+                                docker rmi \$(docker images -q)
+                            fi
 
-        echo "Pulling images..."
-        docker pull egorlegeyda/task12:nginx
-        docker pull egorlegeyda/task12:php
+                            docker pull egorlegeyda/task12:nginx &&
+                            docker pull egorlegeyda/task12:php &&
 
-        echo "Running containers..."
-        docker run --network mynetwork --name php-container -d -p 8081:8081 egorlegeyda/task12:php
-        docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx
-    '
-    """
-}
+                            docker run --network mynetwork --name php-container -d -p 8081:8081 egorlegeyda/task12:php &&
+                            docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx'
+                        """
+                    }
                 }
             }
         }
