@@ -24,7 +24,8 @@ pipeline {
         stage('Push to dockerhub'){
             steps{
                 script{
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID){
+                        sh "docker images"
+                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID){
                         docker.image(IMAGE_NAME_NGINX).push()
                         docker.image(IMAGE_NAME_PHP).push()
                     }
