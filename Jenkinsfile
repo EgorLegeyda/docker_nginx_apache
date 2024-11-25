@@ -44,7 +44,7 @@ pipeline {
                         // docker run -d --name my_container ${IMAGE_NAME}'
                         // """
                         sh """
-                        ssh ${REMOTE_SERVER} 'docker-compose up'
+                        ssh ${REMOTE_SERVER} 'docker-compose up -d'
                         """
                     }
                 }
