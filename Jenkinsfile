@@ -50,8 +50,7 @@ pipeline {
                                 docker pull egorlegeyda/task12:php &&
 
                                 docker run --network mynetwork --name php-container -d -p 8081:8081 egorlegeyda/task12:php &&
-                                docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx
-                                '
+                                docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx'
                         """
                     }
                 }
