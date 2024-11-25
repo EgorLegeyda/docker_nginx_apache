@@ -61,12 +61,12 @@ services:
     #   - ./nginx/ssl/private/nginx-selfsigned.key:/app/ssl/private/nginx-selfsigned.key:ro
     networks: 
       - network
-    build: ./nginx/
+    # build: ./nginx/
     image: egorlegeyda/task12:nginx
   
   php:
     container_name: php-container
-    build: ./apache/
+    # build: ./apache/
     image: egorlegeyda/task12:php
     ports:
       - 8081:8081
