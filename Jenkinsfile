@@ -44,7 +44,20 @@ pipeline {
                         // docker run -d --name my_container ${IMAGE_NAME}'
                         // """
                         sh """
-                        ssh ${REMOTE_SERVER} 'docker-compose up -d'
+                        ssh ${REMOTE_SERVER}
+                            'if [ \"\$(docker ps -aq)\" ]; then
+                                docker rm -f \$(docker ps -aq)
+                            fi
+
+                            if [ \"\$(docker images -q)\" ]; then
+                                docker rmi \$(docker images -q)
+                            fi
+
+                            docker pull egorlegeyda/task12:nginx &&
+                            docker pull egorlegeyda/task12:php &&
+
+                            docker run --network mynetwork --name php-container -d -p 8081:8081 egorlegeyda/task12:php &&
+                            docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx'
                         """
                     }
                 }
