@@ -38,19 +38,21 @@ pipeline {
                     sshagent(['second-key.pem']) {
                         sh """
                             ssh ubuntu@54.209.192.114
-                            'if [ \"\$(docker ps -aq)\" ]; then
-                                docker rm -f \$(docker ps -aq)
-                            fi
+                            // 'if [ \"\$(docker ps -aq)\" ]; then
+                            //     docker rm -f \$(docker ps -aq)
+                            // fi
 
-                            if [ \"\$(docker images -q)\" ]; then
-                                docker rmi \$(docker images -q)
-                            fi
+                            // if [ \"\$(docker images -q)\" ]; then
+                            //     docker rmi \$(docker images -q)
+                            // fi
 
-                            docker pull egorlegeyda/task12:nginx &&
-                            docker pull egorlegeyda/task12:php &&
+                            // docker pull egorlegeyda/task12:nginx &&
+                            // docker pull egorlegeyda/task12:php &&
 
-                            docker run --network mynetwork --name php-container -d -p 8081:8081 egorlegeyda/task12:php &&
-                            docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx'
+                            // docker run --network mynetwork --name php-container -d -p 8081:8081 egorlegeyda/task12:php &&
+                            // docker run --network mynetwork --name nginx-container -d -p 80:80 egorlegeyda/task12:nginx'
+                            'echo hello world'
+
                         """
                     }
                 }
