@@ -37,7 +37,7 @@ pipeline {
                 script {
                     sshagent(['second-key.pem']) {
                         sh """
-                            ssh ubuntu@54.209.192.114 ssh ubuntu@${REMOTE_SERVER} 'echo hello world'
+                            ssh ubuntu@54.209.192.114 'echo hello world'
                         """
                     }
                 }
